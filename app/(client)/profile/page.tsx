@@ -23,7 +23,8 @@ const MyProfile = () => {
 			const data = await getProfile(session?.user.id);
 			setPost(data.reverse());
 		};
-		fetchProfile();
+		if (session?.user.id) fetchProfile();
+
 		return () => {
 			// cancel the request before component unmounts
 			controller.abort();
@@ -51,7 +52,13 @@ const MyProfile = () => {
 		}
 	};
 
-	if (!session) router.push('/');
+	// if (!session) router.push('/');
+	if (!session)
+		return (
+			<div>
+				<p>Please login</p>
+			</div>
+		);
 
 	return (
 		<div>
