@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 const getAll = async () => {
-	const res = await fetch(`/api/prompt`, { next: { revalidate: 30 } });
+	const res = await fetch(`/api/prompt`);
 	return res.json();
 };
 
