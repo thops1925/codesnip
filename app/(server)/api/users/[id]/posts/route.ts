@@ -2,7 +2,7 @@ import Prompt from '@models/prompt';
 import { connectToDB } from '@utils/database';
 import { NextResponse } from 'next/server';
 
-export async function GET({ params }: any) {
+export async function GET(req: Request, { params }: any) {
 	try {
 		await connectToDB();
 		const prompts = await Prompt.find({ creator: params.id }).populate('creator');
