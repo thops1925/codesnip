@@ -1,11 +1,11 @@
 'use client';
 
-import Profile from '@components/Profile';
 import { desc } from '@lib/desc';
 import { BURL } from '@lib/url';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Profile from '@components/Profile';
 
 const getProfile = async (id: any) => {
 	const res = await fetch(`${BURL}/api/users/${id}/posts`);

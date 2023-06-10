@@ -2,7 +2,6 @@ import Image from 'next/image';
 import logo from '@public/assets/images/thops3.png';
 import { useState } from 'react';
 import Link from 'next/link';
-import { signOut } from 'next-auth/react';
 
 type Props = {
 	provider: any;
@@ -11,7 +10,6 @@ type Props = {
 };
 const MobileViewNav = ({ provider, signOut, signIn }: Props) => {
 	const [dropDown, setDropDown] = useState(false);
-	const login = true;
 	return (
 		<div className='sm:hidden flex relative mx-3'>
 			{provider?.user ? (

@@ -1,6 +1,6 @@
-const page = ({ params }: any) => {
+const Title = ({ params }: any) => {
 	console.log(params);
 	return <div>page</div>;
 };
 
-export default page;
+export default Title;

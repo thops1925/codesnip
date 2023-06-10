@@ -7,7 +7,7 @@ type body = {
 	tag: string;
 };
 
-export async function GET(req: Request, { params }: any) {
+export async function GET({ params }: any) {
 	try {
 		await connectToDB();
 		const prompt = await Prompt.findById(params.id).populate('creator');
@@ -36,7 +36,7 @@ export async function PATCH(req: Request, { params }: any) {
 	}
 }
 
-export async function DELETE(req: Request, { params }: any) {
+export async function DELETE({ params }: any) {
 	try {
 		await connectToDB();
 		await Prompt.findByIdAndRemove(params.id).populate('creator');
