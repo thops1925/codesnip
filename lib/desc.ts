@@ -1,0 +1,1 @@
+export const desc = 'Code Sharing: The tool enables users to share code snippets with colleagues, team members, or the broader coding community. Snippets can be exported as files or shared via email, messaging platforms, or popular code-sharing platforms like GitHub or Pastebin.'
