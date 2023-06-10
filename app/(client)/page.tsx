@@ -1,13 +1,12 @@
 'use client';
 import Feed from '@components/Feed';
 import { desc } from '@lib/desc';
-import { BURL } from '@lib/url';
 import logo from '@public/assets/images/thops3.png';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 const getAll = async () => {
-	const res = await fetch(`${BURL}/api/prompt`, { next: { revalidate: 30 } });
+	const res = await fetch(`/api/prompt`, { next: { revalidate: 30 } });
 	return res.json();
 };
 

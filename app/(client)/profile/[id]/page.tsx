@@ -2,13 +2,11 @@
 
 import Profile from '@components/Profile';
 import { desc } from '@lib/desc';
-import { BURL } from '@lib/url';
-import { useSession } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const getProfile = async (id: any) => {
-	const res = await fetch(`${BURL}/api/users/${id}/posts`);
+	const res = await fetch(`/api/users/${id}/posts`);
 	return res.json();
 };
 

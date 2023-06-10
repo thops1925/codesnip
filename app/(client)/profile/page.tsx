@@ -1,14 +1,13 @@
 'use client';
 
 import { desc } from '@lib/desc';
-import { BURL } from '@lib/url';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Profile from '@components/Profile';
 
 const getProfile = async (id: any) => {
-	const res = await fetch(`${BURL}/api/users/${id}/posts`);
+	const res = await fetch(`/api/users/${id}/posts`);
 	return res.json();
 };
 
@@ -16,7 +15,6 @@ const MyProfile = () => {
 	const { data: session } = useSession();
 	const router = useRouter();
 	const [post, setPost] = useState([]);
-	console.log(BURL);
 
 	useEffect(() => {
 		const controller = new AbortController();
