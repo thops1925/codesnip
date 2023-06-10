@@ -1,1 +1,1 @@
-export const BURL = 'http://localhost:3000';
+export const BURL = process.env.NEXTAUTH_URL

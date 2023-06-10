@@ -16,6 +16,7 @@ const MyProfile = () => {
 	const { data: session } = useSession();
 	const router = useRouter();
 	const [post, setPost] = useState([]);
+	console.log(BURL);
 
 	useEffect(() => {
 		const controller = new AbortController();
