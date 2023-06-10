@@ -23,8 +23,7 @@ const MyProfile = () => {
 			const data = await getProfile(session?.user.id);
 			setPost(data.reverse());
 		};
-		if (session?.user.id) fetchProfile();
-
+		fetchProfile();
 		return () => {
 			// cancel the request before component unmounts
 			controller.abort();
