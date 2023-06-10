@@ -51,7 +51,12 @@ const MyProfile = () => {
 		}
 	};
 
-	if (!session) return router.push('/');
+	if (!session)
+		return (
+			<div>
+				<p>Please login</p>
+			</div>
+		);
 
 	return (
 		<div>
