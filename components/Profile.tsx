@@ -18,7 +18,6 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }: Props) => {
 					<Prompt
 						post={post}
 						key={post._id}
-						handleTagClick
 						handleEdit={() => handleEdit && handleEdit(post)}
 						handleDelete={() => handleDelete && handleDelete(post)}
 					/>
