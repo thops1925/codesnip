@@ -1,10 +1,10 @@
 'use client';
 
+import Profile from '@components/Profile';
 import { desc } from '@lib/desc';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import Profile from '@components/Profile';
 
 const getProfile = async (id: any) => {
 	const res = await fetch(`/api/users/${id}/posts`);
@@ -51,13 +51,7 @@ const MyProfile = () => {
 		}
 	};
 
-	// if (!session) router.push('/');
-	if (!session)
-		return (
-			<div>
-				<p>Please login</p>
-			</div>
-		);
+	if (!session) return router.push('/');
 
 	return (
 		<div>

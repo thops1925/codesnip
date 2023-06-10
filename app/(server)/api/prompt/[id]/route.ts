@@ -36,7 +36,7 @@ export async function PATCH(req: Request, { params }: any) {
 	}
 }
 
-export async function DELETE({ params }: any) {
+export async function DELETE(req: Request, { params }: any) {
 	try {
 		await connectToDB();
 		await Prompt.findByIdAndRemove(params.id).populate('creator');
