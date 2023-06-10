@@ -32,7 +32,7 @@ const Home = () => {
 				<h1 className='text-normal font-mono text-center tracking-wider text-gray-800 '>{desc}</h1>
 				<Image src={logo} alt='logo' className='blur-0 object-contain' blurDataURL='data:...' placeholder='blur' />
 			</div>
-			<Feed postData={data} setData={setData} />
+			<Feed postData={data} setData={undefined} />
 		</section>
 	);
 };
