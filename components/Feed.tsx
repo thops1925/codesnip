@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 const PromptList = ({ data }: { data: Post[] }) => {
 	return (
-		<div className='space-y-4 py-4 sm:columns-2 sm:gap-6 xl:columns-3'>
+		<div className='space-y-4 py-4 sm:gap-6 xl:columns-3 md:columns-2 sm:columns-1  '>
 			{data.map((post: Post) => (
 				<Prompt post={post} key={post._id} handleEdit={undefined} handleDelete={undefined} />
 			))}
@@ -43,7 +43,7 @@ const Feed = ({ postData, setData }: { postData: Post[]; setData: any }) => {
 					value={searchText}
 					onChange={handleSearch}
 					required
-					className='block w-full my-6 rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0'
+					className=' block w-full my-6 rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0'
 				/>
 			</form>
 			{searchText ? <PromptList data={searchData} /> : <PromptList data={postData} />}

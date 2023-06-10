@@ -28,7 +28,7 @@ const Home = () => {
 
 	return (
 		<section className='flex justify-center items-center flex-col '>
-			<div className='mx-auto w-full max-w-7xl flex justify-center items-center flex-row gap-2'>
+			<div className='mx-auto w-full max-w-7xl flex justify-center items-center flex-col gap-2'>
 				<h1 className='text-normal font-mono text-center tracking-wider text-gray-800 '>{desc}</h1>
 				<Image src={logo} alt='logo' className='blur-0 object-contain' blurDataURL='data:...' placeholder='blur' />
 			</div>
