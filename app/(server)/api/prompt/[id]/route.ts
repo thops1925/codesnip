@@ -7,7 +7,7 @@ type body = {
 	tag: string;
 };
 
-export async function GET({ params }: any) {
+export async function GET(req: Request, { params }: any) {
 	try {
 		await connectToDB();
 		const prompt = await Prompt.findById(params.id).populate('creator');
