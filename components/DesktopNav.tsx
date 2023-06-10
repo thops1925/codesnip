@@ -1,7 +1,7 @@
 'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '../public/assets/images/thops3.png';
 import { useSession } from 'next-auth/react';
 
 type Props = {
