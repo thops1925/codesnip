@@ -21,7 +21,7 @@ const Nav = () => {
 	}, []);
 
 	return (
-		<nav className='flex items-center justify-between '>
+		<nav className='flex items-center justify-between my-4'>
 			<Link href='/' className='flex items-center justify-center'>
 				<Image src={logo} alt='logo' className='h-14 w-24 object-contain blur-0 lg:h-20 lg:w-24' />
 			</Link>

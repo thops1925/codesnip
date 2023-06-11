@@ -32,10 +32,10 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 	};
 	return (
 		<div
-			className='h-fit max-w-sm break-inside-avoid rounded-lg 
-		 border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter'>
-			<div className='flex items-start justify-between gap-5' onClick={handleProfile}>
-				<div className='flex cursor-pointer flex-row items-center justify-center gap-3'>
+			className='break-inside-avoid rounded-lg border border-gray-300 
+		 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter h-fit max-w-sm'>
+			<div className='flex justify-between items-start gap-5' onClick={handleProfile}>
+				<div className='flex flex-row justify-center items-center gap-3 cursor-pointer'>
 					<Image src={post.creator.image} alt={post._id} width={40} height={40} className='rounded-full object-contain' />
 					<div className='flex flex-col '>
 						<h3 className='font-satoshi font-semibold text-gray-900 '>{post.creator.username}</h3>
@@ -43,15 +43,15 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 					</div>
 				</div>
 				<div
-					className=' flex h-7 w-7 cursor-pointer items-center 
-				justify-center rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur'
+					className=' w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] 
+				backdrop-blur flex justify-center items-center cursor-pointer'
 					onClick={handleCopy}>
 					{copy === post.prompt ? (
-						<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='h-4 w-4'>
+						<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='w-4 h-4'>
 							<path strokeLinecap='round' strokeLinejoin='round' d='M4.5 12.75l6 6 9-13.5' />
 						</svg>
 					) : (
-						<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='h-4 w-4'>
+						<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='w-4 h-4'>
 							<path
 								strokeLinecap='round'
 								strokeLinejoin='round'
@@ -61,18 +61,18 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 					)}
 				</div>
 			</div>
-			<p className='text-normal my-4 cursor-pointer text-sky-500' onClick={() => handleTagClick && handleTagClick(post.tag)}>
+			<p className='text-normal text-sky-500 my-4 cursor-pointer' onClick={() => handleTagClick && handleTagClick(post.tag)}>
 				#{post.tag}
 			</p>
 
-			<code className='my-4 line-clamp-6 whitespace-pre-line font-mono  text-sm text-gray-700'>{post.prompt}</code>
+			<code className='my-4 font-mono text-sm text-gray-700  whitespace-pre-line line-clamp-6'>{post.prompt}</code>
 
 			{session?.user.id === post.creator._id && pathname === '/profile' && (
-				<div className='mt-3 flex flex-row gap-3'>
-					<p className='cursor-pointer font-inter text-sm font-bold text-sky-500' onClick={handleEdit}>
+				<div className='flex flex-row gap-3 mt-3'>
+					<p className='font-inter text-sm cursor-pointer font-bold text-sky-500' onClick={handleEdit}>
 						Edit
 					</p>
-					<p className='cursor-pointer font-inter text-sm font-bold' onClick={handleDelete}>
+					<p className='font-inter text-sm cursor-pointer font-bold' onClick={handleDelete}>
 						Delete
 					</p>
 				</div>
