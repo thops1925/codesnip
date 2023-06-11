@@ -11,28 +11,28 @@ type Props = {
 const MobileViewNav = ({ provider, signOut, signIn }: Props) => {
 	const [dropDown, setDropDown] = useState(false);
 	return (
-		<div className='sm:hidden flex relative mx-3'>
+		<div className='relative mx-3 flex sm:hidden'>
 			{provider?.user ? (
 				<div className='flex'>
 					<Image
 						src={logo}
 						alt='logo'
-						className='rounded-full blur-0 object-contain h-12 w-12 border border-black '
+						className='h-12 w-12 rounded-full border border-black object-contain blur-0 '
 						width={100}
 						height={100}
 						onClick={() => setDropDown((prev) => !prev)}
 					/>
 					{dropDown && (
-						<div className='absolute right-0 top-full mt-3 w-screen p-5 rounded-lg h-screen flex flex-col gap-2 z-40 backdrop-blur justify-start items-center'>
-							<Link href='/profile' onClick={() => setDropDown(false)} className='capitalize font-bold tracking-wide  h-12'>
+						<div className='absolute right-0 top-full z-40 mt-3 flex h-screen w-screen flex-col items-center justify-start gap-2 rounded-lg p-5 backdrop-blur'>
+							<Link href='/profile' onClick={() => setDropDown(false)} className='h-12 font-bold capitalize  tracking-wide'>
 								my profile
 							</Link>
-							<Link href='/create-prompt' className=' capitalize font-bold tracking-wide h-12' onClick={() => setDropDown(false)}>
+							<Link href='/create-prompt' className=' h-12 font-bold capitalize tracking-wide' onClick={() => setDropDown(false)}>
 								create post
 							</Link>
 							<button
 								type='button'
-								className='capitalize font-bold tracking-wide h-12 bg-black text-white rounded-full px-5 py-3'
+								className='h-12 rounded-full bg-black px-5 py-3 font-bold capitalize tracking-wide text-white'
 								onClick={() => {
 									setDropDown(false);
 									signOut();
@@ -52,7 +52,7 @@ const MobileViewNav = ({ provider, signOut, signIn }: Props) => {
 						Sign In
 					</button> */}
 
-					<button onClick={() => signIn()} className='text-white rounded-full bg-black px-5 py-3 font-bold tracking-wide h-12'>
+					<button onClick={() => signIn()} className='h-12 rounded-full bg-black px-5 py-3 font-bold tracking-wide text-white'>
 						Sign In
 					</button>
 				</>

@@ -27,10 +27,10 @@ const Home = () => {
 	}, []);
 
 	return (
-		<section className='flex justify-center items-center flex-col '>
-			<div className='mx-auto w-full max-w-7xl flex justify-center items-center flex-col gap-2'>
-				<h1 className='text-normal font-mono text-center tracking-wider text-gray-800 '>{desc}</h1>
-				<Image src={logo} alt='logo' className='blur-0 object-contain' blurDataURL='data:...' placeholder='blur' />
+		<section className='flex flex-col items-center justify-center '>
+			<div className='mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-2'>
+				<h1 className='text-normal text-center font-mono tracking-wider text-gray-800 '>{desc}</h1>
+				<Image src={logo} alt='logo' className='object-contain blur-0' blurDataURL='data:...' placeholder='blur' />
 			</div>
 			<Feed postData={data} setData={undefined} />
 		</section>

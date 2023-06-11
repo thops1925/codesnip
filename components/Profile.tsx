@@ -11,8 +11,8 @@ type Props = {
 const Profile = ({ name, desc, data, handleEdit, handleDelete }: Props) => {
 	return (
 		<section className='w-full'>
-			<span className='text-2xl font-bold mx-4'>{name}</span>
-			<h1 className='text-sm font-normal font-mono mt-3 md:w-1/2 mx-4 whitespace-pre-wrap '>{desc}</h1>
+			<span className='mx-4 text-2xl font-bold'>{name}</span>
+			<h1 className='mx-4 mt-3 whitespace-pre-wrap font-mono text-sm font-normal md:w-1/2 '>{desc}</h1>
 			<div className='mt-10 space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3'>
 				{data.map((post: Post) => (
 					<Prompt

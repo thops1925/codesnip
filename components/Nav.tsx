@@ -21,9 +21,9 @@ const Nav = () => {
 	}, []);
 
 	return (
-		<nav className='flex justify-between items-center '>
-			<Link href='/' className='flex justify-center items-center'>
-				<Image src={logo} alt='logo' className='object-contain h-14 w-24 lg:h-20 lg:w-24 blur-0' />
+		<nav className='flex items-center justify-between '>
+			<Link href='/' className='flex items-center justify-center'>
+				<Image src={logo} alt='logo' className='h-14 w-24 object-contain blur-0 lg:h-20 lg:w-24' />
 			</Link>
 			<DesktopNav providers={provider} signOut={signOut} signIn={signIn} />
 			<MobileViewNav provider={session} signOut={signOut} signIn={signIn} />
