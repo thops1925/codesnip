@@ -24,11 +24,12 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 
 	const handleProfile = () => {
 		if (post.creator._id === session?.user.id) return router.push('/profile');
-		router.push(`/profile/${post.creator._id}?name=${post.creator.username}`);
+		router.push(`/profile/user/${post.creator._id}?name=${post.creator.username}`);
 	};
 
-	const handleTagClick = (id: any) => {
-		console.log(id);
+	const handleTagClick = (tag: any) => {
+		console.log(tag);
+		router.push(`/profile/tag/${tag}?tag=${post.creator.username}`);
 	};
 	return (
 		<div
@@ -61,7 +62,7 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 					)}
 				</div>
 			</div>
-			<p className='text-normal text-sky-500 my-4 cursor-pointer' onClick={() => handleTagClick && handleTagClick(post.tag)}>
+			<p className='text-normal text-sky-500 my-4 cursor-pointer' onClick={() => handleTagClick && handleTagClick(post._id)}>
 				#{post.tag}
 			</p>
 

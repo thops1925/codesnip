@@ -7,6 +7,7 @@ type body = {
 	tag: string;
 };
 
+// search
 export async function GET(req: Request, { params }: any) {
 	try {
 		await connectToDB();
@@ -18,6 +19,7 @@ export async function GET(req: Request, { params }: any) {
 	}
 }
 
+// update
 export async function PATCH(req: Request, { params }: any) {
 	const body: body = await req.json();
 	const { prompt, tag } = body;
@@ -36,6 +38,7 @@ export async function PATCH(req: Request, { params }: any) {
 	}
 }
 
+// delete
 export async function DELETE(req: Request, { params }: any) {
 	try {
 		await connectToDB();
