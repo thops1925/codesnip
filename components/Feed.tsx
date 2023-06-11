@@ -17,13 +17,15 @@ const Feed = ( ) => {
 	const [searchData, setSearchData] = useState([]);
 	const [postData, setData] = useState([]);
 
+	const getAllData = async () => {
+		const res = await fetch(`/api/prompt`);
+		const data = await res.json();
+		setData(data.reverse());
+		};
+
 	useEffect(() => {
 		const controller = new AbortController();
-		const getAllData = async () => {
-				const res = await fetch(`/api/prompt`);
-				const data = await res.json();
-				setData(data.reverse());
-		};
+	
 		getAllData();
 		return () => {
 			// cancel the request before component unmounts
