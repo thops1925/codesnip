@@ -25,7 +25,7 @@ const Feed = ( ) => {
 
 	useEffect(() => {
 		getAllData();
-	}, []);
+	}, [postData]);
 
 
 	const handleSearch = (e: any) => {
