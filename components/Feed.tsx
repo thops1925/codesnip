@@ -24,13 +24,7 @@ const Feed = ( ) => {
 		};
 
 	useEffect(() => {
-		const controller = new AbortController();
-	
 		getAllData();
-		return () => {
-			// cancel the request before component unmounts
-			controller.abort();
-		};
 	}, []);
 
 
