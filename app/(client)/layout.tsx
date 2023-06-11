@@ -10,10 +10,10 @@ export const metadata = {
 const RootLayout = ({ children }: any) => {
 	return (
 		<html lang='eng'>
-			<body className='max-w-7xl mx-auto bg-gray-200 pb-32  '>
+			<body className='inset-0 m-0 mx-auto max-w-7xl bg-gray-200 p-0 '>
 				<Provider>
 					<Nav />
-					<main className='antialiased font-font-satoshi'>{children}</main>
+					<main className='font-font-satoshi antialiased'>{children}</main>
 				</Provider>
 			</body>
 		</html>
