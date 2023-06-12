@@ -6,7 +6,7 @@ const TagProfile = ({ params }: any) => {
 	const searchParams = useSearchParams();
 	const tag = searchParams.get('tag');
 	const id = params.id;
-	const [post, setPost] = useState<Post>({});
+	const [post, setPost] = useState([]);
 
 	useEffect(() => {
 		const getTag = async () => {
@@ -16,13 +16,11 @@ const TagProfile = ({ params }: any) => {
 		};
 		if (id) getTag();
 	}, [id]);
-	console.log(post);
 
 	return (
 		<section>
-			<div>{post.tag}</div>
 			<div>
-				<p className='my-4 font-mono text-sm text-gray-700  whitespace-pre-line'>{post.prompt}</p>
+				<p className='my-4 font-mono text-sm text-gray-700  whitespace-pre-line'></p>
 			</div>
 		</section>
 	);
