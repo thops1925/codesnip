@@ -1,11 +1,11 @@
 import Prompt from "@models/prompt";
 import { connectToDB } from "@utils/database";
 
-export const GET = async (request, { params }) => {
+export const GET = async (request: any, { params }: any) => {
     try {
         await connectToDB()
 
-        const prompts = await Prompt.findOne({ _id: params.id })
+        const prompts = await Prompt.find({ _id: params.id })
 
         return new Response(JSON.stringify(prompts), { status: 200 })
     } catch (error) {

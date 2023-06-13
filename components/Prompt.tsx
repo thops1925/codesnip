@@ -15,6 +15,9 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 	const pathname = usePathname();
 	const { data: session } = useSession();
 	const [copy, setCopy] = useState('');
+	const [line, setLine] = useState(false);
+
+	console.log(line);
 
 	const handleCopy = () => {
 		setCopy(post.prompt);
@@ -31,16 +34,17 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 		console.log(tag);
 		router.push(`/profile/tag/${tag}?tag=${post.creator.username}`);
 	};
+
 	return (
 		<div
-			className='break-inside-avoid rounded-lg border border-gray-300 
+			className='flex-1 break-inside-avoid rounded-lg border border-gray-300 
 		 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter h-fit max-w-sm'>
 			<div className='flex justify-between items-start gap-5' onClick={handleProfile}>
 				<div className='flex flex-row justify-center items-center gap-3 cursor-pointer'>
 					<Image src={post.creator.image} alt={post._id} width={40} height={40} className='rounded-full object-contain' />
 					<div className='flex flex-col '>
 						<h3 className='font-satoshi font-semibold text-gray-900 '>{post.creator.username}</h3>
-						<p className='text-sm text-gray-400'>{post.creator.email}</p>{' '}
+						<p className='text-sm text-gray-400'>{post.creator.email.slice(0, 6)}</p>{' '}
 					</div>
 				</div>
 				<div
@@ -63,17 +67,19 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 				</div>
 			</div>
 			<p className='text-normal text-sky-500 my-4 cursor-pointer' onClick={() => handleTagClick && handleTagClick(post._id)}>
-				#{post.tag}
+				{post.tag}
 			</p>
 
-			<code className='my-4 font-mono text-sm text-gray-700  whitespace-pre-line line-clamp-6'>{post.prompt}</code>
+			<code className={`font-mono text-sm text-gray-700  whitespace-pre-line ${line ? '' : 'line-clamp-6 '}`} onClick={() => setLine(!line)}>
+				{post.prompt}
+			</code>
 
 			{session?.user.id === post.creator._id && pathname === '/profile' && (
 				<div className='flex flex-row gap-3 mt-3'>
-					<p className='font-inter text-sm cursor-pointer font-bold text-sky-500' onClick={handleEdit}>
+					<p className='rounded-full font-bold tracking-wide border border-black  px-5 py-3 h-12 cursor-pointer' onClick={handleEdit}>
 						Edit
 					</p>
-					<p className='font-inter text-sm cursor-pointer font-bold' onClick={handleDelete}>
+					<p className='  text-white rounded-full bg-black px-5 py-3 font-bold tracking-wide h-12 cursor-pointer' onClick={handleDelete}>
 						Delete
 					</p>
 				</div>
