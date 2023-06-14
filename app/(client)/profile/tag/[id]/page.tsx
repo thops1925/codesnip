@@ -33,10 +33,10 @@ const TagProfile = ({ params }: any) => {
 	const handleCopy = () => {};
 
 	return (
-		<section className='flex justify-center items-center max-w-7xl sm:min-w-fi clear-right '>
+		<section className='flex justify-center items-center '>
 			{posts.map((post: Post) => (
-				<div className='' key={post._id}>
-					<div className='flex justify-start items-start my-12 gap-3'>
+				<div className='flex items-center justify-center flex-col' key={post._id}>
+					<div className='flex justify-start items-start mx-4 '>
 						<Image src={post.creator.image} alt={post._id} width={80} height={80} className='rounded-full object-contain' />
 						<div className='flex flex-col '>
 							<h3 className='font-satoshi font-semibold text-gray-900 text-4xl  '>{post.creator.username}</h3>
@@ -44,7 +44,7 @@ const TagProfile = ({ params }: any) => {
 						</div>
 						<div
 							className='rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] 
-				backdrop-blur flex justify-center items-center cursor-pointer min-w-fit mx-4 '
+				backdrop-blur flex justify-center items-center cursor-pointer '
 							onClick={() => {
 								setCopy(post.prompt);
 								navigator.clipboard.writeText(post.prompt);
@@ -65,8 +65,8 @@ const TagProfile = ({ params }: any) => {
 							)}
 						</div>
 					</div>
-					<div>
-						<code className='font-mono text-gray-700 whitespace-pre sm:text-sm md:text-sm'>{post.prompt}</code>
+					<div className='flex w-fit'>
+						<pre className='font-mono text-gray-700 whitespace-pre sm:text-sm md:text-sm h-fit'>{post.prompt}</pre>
 					</div>
 				</div>
 			))}
