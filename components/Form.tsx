@@ -19,7 +19,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }: Props) => {
 			<h1 className='text-5xl flex items-center justify-center font-bold font-cookie'>{type}</h1>
 			<form
 				onSubmit={handleSubmit}
-				className='mt-10 w-full max-w-2xl flex flex-col gap-7  rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5 '>
+				className='mt-10  max-w-7xl flex flex-col rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5 '>
 				<label>
 					<span className='font-satoshi font-semibold text-base text-gray-700 '>Code ... </span>
 					<textarea

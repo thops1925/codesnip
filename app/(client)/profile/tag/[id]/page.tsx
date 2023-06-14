@@ -1,4 +1,5 @@
 'use client';
+import Feed from '@components/Feed';
 import Prompt from '@components/Prompt';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
@@ -33,18 +34,17 @@ const TagProfile = ({ params }: any) => {
 	const handleCopy = () => {};
 
 	return (
-		<section className='flex justify-center items-center '>
+		<section className='flex justify-center items-center container sm:container lg:container md:container mx-auto'>
 			{posts.map((post: Post) => (
-				<div className='flex items-center justify-center flex-col' key={post._id}>
-					<div className='flex justify-start items-start mx-4 '>
-						<Image src={post.creator.image} alt={post._id} width={80} height={80} className='rounded-full object-contain' />
+				<div className='flex-1 flex-col' key={post._id}>
+					<div className='flex gap-3 justify-center items-center mb-4'>
+						<Image src={post.creator.image} alt={post._id} width={60} height={60} className='rounded-full object-contain' />
 						<div className='flex flex-col '>
-							<h3 className='font-satoshi font-semibold text-gray-900 text-4xl  '>{post.creator.username}</h3>
+							<h3 className='font-semibold text-lg capitalize'>{post.creator.username}</h3>
 							<p className=' text-gray-400 text-lg'>{post.creator.email}</p>{' '}
 						</div>
 						<div
-							className='rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] 
-				backdrop-blur flex justify-center items-center cursor-pointer '
+							className=''
 							onClick={() => {
 								setCopy(post.prompt);
 								navigator.clipboard.writeText(post.prompt);
@@ -65,9 +65,10 @@ const TagProfile = ({ params }: any) => {
 							)}
 						</div>
 					</div>
-					<div className='flex w-fit'>
-						<pre className='font-mono text-gray-700 whitespace-pre sm:text-sm md:text-sm h-fit'>{post.prompt}</pre>
+					<div className='flex items-center justify-center bg-slate-700 py-4 rounded-lg'>
+						<div className='whitespace-pre-wrap inset-0 break-words text-green-600'>{post.prompt}</div>
 					</div>
+					<Feed />
 				</div>
 			))}
 		</section>

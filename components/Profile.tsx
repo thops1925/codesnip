@@ -10,10 +10,10 @@ type Props = {
 
 const Profile = ({ name, desc, data, handleEdit, handleDelete }: Props) => {
 	return (
-		<section className='w-full'>
-			<span className='mx-4 text-2xl font-bold'>{name}</span>
-			<h1 className='mx-4 mt-3 whitespace-pre-wrap font-mono text-sm font-normal md:w-1/2 '>{desc}</h1>
-			<div className='mt-10 space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3'>
+		<div className='container sm:container lg:container md:container mx-auto'>
+			<span className='text-2xl font-bold'>{name}</span>
+			<h1 className='mt-3 font-mono text-sm font-normal'>{desc}</h1>
+			<div className='space-y-4 py-4 sm:columns-1 xl:columns-3 md:columns-2 sm:px-32'>
 				{data.map((post: Post) => (
 					<Prompt
 						post={post}
@@ -23,7 +23,7 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }: Props) => {
 					/>
 				))}
 			</div>
-		</section>
+		</div>
 	);
 };
 
