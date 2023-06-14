@@ -12,7 +12,7 @@ const PromptList = ({ data }: { data: Post[] }) => {
 	);
 };
 
-const Feed = ( ) => {
+const Feed = () => {
 	const [searchText, setSearchText] = useState('');
 	const [searchData, setSearchData] = useState([]);
 	const [postData, setData] = useState([]);
@@ -21,12 +21,11 @@ const Feed = ( ) => {
 		const res = await fetch(`/api/prompt`);
 		const data = await res.json();
 		setData(data.reverse());
-		};
+	};
 
 	useEffect(() => {
 		getAllData();
 	}, []);
-
 
 	const handleSearch = (e: any) => {
 		e.preventDefault();
@@ -45,8 +44,8 @@ const Feed = ( ) => {
 	}, [searchText]);
 
 	return (
-		<section className='mx-auto w-full max-w-md flex justify-center items-center flex-col '>
-			<form className='w-full flex justify-center items-center'>
+		<section className='flex justify-center items-center flex-col max-w-full'>
+			<form className='flex justify-center items-center lg:w-1/2 md:w-1/3 w-full'>
 				<input
 					type='text'
 					placeholder='Search'

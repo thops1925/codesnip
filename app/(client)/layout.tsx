@@ -10,7 +10,7 @@ export const metadata = {
 const RootLayout = ({ children }: any) => {
 	return (
 		<html lang='eng'>
-			<body className='inset-0 m-0 mx-auto max-w-7xl bg-gray-200 p-0 '>
+			<body className='inset-0 m-0 mx-auto max-w-7xl bg-gray-200 p-0 min-w-fit'>
 				<Provider>
 					<Nav />
 					<main className='font-font-satoshi antialiased'>{children}</main>
