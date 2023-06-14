@@ -2,8 +2,9 @@
 
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 type Props = {
 	post: Post;
@@ -16,8 +17,6 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 	const { data: session } = useSession();
 	const [copy, setCopy] = useState('');
 	const [line, setLine] = useState(false);
-
-	console.log(line);
 
 	const handleCopy = () => {
 		setCopy(post.prompt);
@@ -36,10 +35,12 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 	};
 
 	return (
-		<div className='flex-1 break-inside-avoid rounded-lg border border-gray-300 min-w-min bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter h-fit max-w-sm'>
+		<div className='break-inside-avoid rounded-lg border border-gray-300 min-w-min bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter h-fit max-w-sm'>
 			<div className='flex justify-between items-start gap-5' onClick={handleProfile}>
 				<div className='flex flex-row justify-center items-center gap-3 cursor-pointer'>
-					<Image src={post.creator.image} alt={post._id} width={40} height={40} className='rounded-full object-contain' />
+					<Link href='/profile'>
+						<Image src={post.creator.image} alt={post._id} width={40} height={40} className='rounded-full object-contain' />
+					</Link>
 					<div className='flex flex-col '>
 						<h3 className='font-satoshi font-semibold text-gray-900 '>{post.creator.username}</h3>
 						<p className='text-sm text-gray-400'>{post.creator.email.slice(0, 6)}</p>{' '}
@@ -64,13 +65,14 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 					)}
 				</div>
 			</div>
-			<p className='text-normal text-sky-500 my-4 cursor-pointer' onClick={() => handleTagClick && handleTagClick(post._id)}>
+			<p className='text-normal text-sky-500 font-bold my-4 cursor-pointer capitalize' onClick={() => handleTagClick && handleTagClick(post._id)}>
 				{post.tag}
 			</p>
-
-			<code className={`font-mono text-sm text-gray-700  whitespace-pre-line ${line ? '' : 'line-clamp-6 '}`} onClick={() => setLine(!line)}>
-				{post.prompt}
-			</code>
+			<div className={`${line ? ' bg-slate-700 py-4 rounded-lg' : ''}`} onClick={() => setLine(!line)}>
+				<code className={`font-mono text-sm text-gray-700  whitespace-pre-line ${line ? 'text-green-600 bg-slate-700 mx-4 ' : 'line-clamp-6 '}`}>
+					{post.prompt}
+				</code>
+			</div>
 
 			{session?.user.id === post.creator._id && pathname === '/profile' && (
 				<div className='flex flex-row gap-3 mt-3'>

@@ -2,6 +2,7 @@
 import Feed from '@components/Feed';
 import Prompt from '@components/Prompt';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
@@ -31,14 +32,14 @@ const TagProfile = ({ params }: any) => {
 	}, [id]);
 	console.log(posts);
 
-	const handleCopy = () => {};
-
 	return (
 		<section className='flex justify-center items-center container sm:container lg:container md:container mx-auto'>
 			{posts.map((post: Post) => (
-				<div className='flex-1 flex-col' key={post._id}>
+				<div className='flex-1 flex-col mx-4' key={post._id}>
 					<div className='flex gap-3 justify-center items-center mb-4'>
-						<Image src={post.creator.image} alt={post._id} width={60} height={60} className='rounded-full object-contain' />
+						<Link href='/profile'>
+							<Image src={post.creator.image} alt={post._id} width={60} height={60} className='rounded-full object-contain' />
+						</Link>
 						<div className='flex flex-col '>
 							<h3 className='font-semibold text-lg capitalize'>{post.creator.username}</h3>
 							<p className=' text-gray-400 text-lg'>{post.creator.email}</p>{' '}

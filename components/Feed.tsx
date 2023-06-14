@@ -4,7 +4,7 @@ import Prompt from './Prompt';
 
 const PromptList = ({ data }: { data: Post[] }) => {
 	return (
-		<div className=' space-y-4 py-4 sm:columns-1 xl:columns-3 md:columns-2 sm:px-32'>
+		<div className='space-y-4 py-4 sm:columns-1 xl:columns-3 md:columns-2 sm:px-32 mx-auto'>
 			{data.map((post: Post) => (
 				<Prompt post={post} key={post._id} handleEdit={undefined} handleDelete={undefined} />
 			))}
@@ -44,7 +44,7 @@ const Feed = () => {
 	}, [searchText]);
 
 	return (
-		<section className='flex justify-center items-center flex-col max-w-full'>
+		<section className='container sm:container lg:container md:container flex justify-center items-center flex-col'>
 			<form className='flex justify-center items-center lg:w-1/2 md:w-1/3 w-full'>
 				<input
 					type='text'
