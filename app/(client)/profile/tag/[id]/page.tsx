@@ -1,10 +1,11 @@
 'use client';
 import Feed from '@components/Feed';
-import Prompt from '@components/Prompt';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+
+import { FacebookShareButton, TwitterShareButton, FacebookIcon, TwitterIcon } from 'react-share';
 
 const getProfileTag = async (id: any) => {
 	const res = await fetch(`/api/tag/${id}/posts`);
@@ -31,19 +32,19 @@ const TagProfile = ({ params }: any) => {
 		};
 	}, [id]);
 	console.log(posts);
-
 	return (
 		<section className='flex justify-center items-center container sm:container lg:container md:container mx-auto'>
 			{posts.map((post: Post) => (
 				<div className='flex-1 flex-col mx-4' key={post._id}>
 					<div className='flex gap-3 justify-center items-center mb-4'>
 						<Link href='/profile'>
-							<Image src={post.creator.image} alt={post._id} width={60} height={60} className='rounded-full object-contain' />
+							<Image src={post.creator.image} alt={post._id} width={40} height={40} className='rounded-full object-contain' />
 						</Link>
 						<div className='flex flex-col max-w-xl min-w-md'>
 							<h3 className='font-semibold text-lg capitalize'>{post.creator.username.slice(0, 6)}</h3>
-							<p className=' text-gray-400 text-lg'>{post.creator.email.slice(0, 5)}</p>{' '}
+							<p className=' text-gray-400 text-lg'>{post.creator.email}</p>{' '}
 						</div>
+
 						<div
 							className=''
 							onClick={() => {
@@ -64,10 +65,33 @@ const TagProfile = ({ params }: any) => {
 									/>
 								</svg>
 							)}
+
+							{/* <FacebookShareButton
+								url={`http://localhost:3000/profile/tag/${post._id}?tag=${post.creator.username}`}
+								title={post.tag}
+								// eslint-disable-next-line react/no-children-prop
+								children={undefined}
+							/>
+
+							<TwitterShareButton
+								url={`http://localhost:3000/profile/tag/${post._id}?tag=${post.creator.username}`}
+								title={post.tag}
+								// eslint-disable-next-line react/no-children-prop
+								children={undefined}
+							/> */}
 						</div>
 					</div>
 					<div className='flex items-center justify-center bg-slate-700 py-4 rounded-lg'>
 						<div className='whitespace-pre-wrap inset-0 break-words text-green-600'>{post.prompt}</div>
+					</div>
+					<div className='my-5 space-x-3'>
+						<FacebookShareButton title={post.tag} url={`https://codesnip-alpha.vercel.app/profile/tag/${post._id}?tag=${post.creator.username}`}>
+							<FacebookIcon size={32} round={true} />
+						</FacebookShareButton>
+
+						<TwitterShareButton title={post.tag} url={`https://codesnip-alpha.vercel.app/profile/tag/${post._id}?tag=${post.creator.username}`}>
+							<TwitterIcon size={32} round={true} />
+						</TwitterShareButton>
 					</div>
 					<Feed />
 				</div>
