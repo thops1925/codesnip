@@ -14,15 +14,7 @@ const Feed = () => {
 	};
 
 	useEffect(() => {
-		const controller = new AbortController();
-		async () => {
-			await getAllData();
-		};
-
-		return () => {
-			// cancel the request before component unmounts
-			controller.abort();
-		};
+		getAllData();
 	}, []);
 
 	const handleSearch = (e: any) => {
