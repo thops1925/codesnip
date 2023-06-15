@@ -33,7 +33,7 @@ const CreatePrompt = () => {
 				if (response.status === 304) {
 					console.log('Resource not modified');
 				} else {
-					router.push('/profile');
+					router.push('/');
 				}
 			}
 		} catch (error) {
