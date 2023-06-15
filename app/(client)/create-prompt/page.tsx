@@ -31,11 +31,7 @@ const CreatePrompt = () => {
 				}),
 			});
 			if (response.ok) {
-				if (response.status === 304) {
-					console.log('Resource not modified');
-				} else {
-					router.push('/');
-				}
+				router.push('/');
 			}
 		} catch (error) {
 			console.log(error);
