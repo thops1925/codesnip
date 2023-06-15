@@ -13,6 +13,8 @@ const Feed = () => {
 		setData(data.reverse());
 	};
 
+	console.log(postData);
+
 	useEffect(() => {
 		getAllData();
 	}, []);
