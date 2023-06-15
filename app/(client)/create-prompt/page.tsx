@@ -13,14 +13,16 @@ const CreatePrompt = () => {
 	const [submitting, setIsSubmitting] = useState(false);
 	const [post, setPost] = useState({ prompt: '', tag: '' });
 
-	const createPrompt = async (e: any) => {
+	const createPrompt = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setIsSubmitting(true);
 
 		try {
 			const response = await fetch('/api/prompt/new', {
 				method: 'POST',
-				mode: 'cors',
+				headers: {
+					'Content-Type': 'application/json',
+				},
 				body: JSON.stringify({
 					userId: session?.user?.id,
 					prompt: post.prompt,
@@ -36,7 +38,6 @@ const CreatePrompt = () => {
 			setIsSubmitting(false);
 		}
 	};
-
 	if (!session)
 		return (
 			<div>
