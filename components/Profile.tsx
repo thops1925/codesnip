@@ -16,7 +16,7 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }: Props) => {
 				<h1 className='font-mono text-sm font-normal mx-4 lg:w-1/2'>{desc}</h1>
 			</div>
 
-			<div className='space-y-4 py-4 sm:columns-1 xl:columns-3 md:columns-2 sm:px-32'>
+			<div className='grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-4 mx-auto'>
 				{data.map((post: Post) => (
 					<Prompt
 						post={post}

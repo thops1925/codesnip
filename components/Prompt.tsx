@@ -35,7 +35,7 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 	};
 
 	return (
-		<div className='break-inside-avoid rounded-lg border border-gray-300 min-w-min bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter h-fit max-w-sm'>
+		<div className='break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter h-fit w-full px-4 py-4 min-w-sm max-w-sm overflow-x-auto'>
 			<div className='flex justify-between items-start gap-5' onClick={handleProfile}>
 				<div className='flex flex-row justify-center items-center gap-3 cursor-pointer'>
 					<Link href='/profile'>

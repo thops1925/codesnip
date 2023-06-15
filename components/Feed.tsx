@@ -1,16 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import Prompt from './Prompt';
-
-const PromptList = ({ data }: { data: Post[] }) => {
-	return (
-		<div className='space-y-4 py-4 sm:columns-1 xl:columns-3 md:columns-2 sm:px-32 mx-auto'>
-			{data.map((post: Post) => (
-				<Prompt post={post} key={post._id} handleEdit={undefined} handleDelete={undefined} />
-			))}
-		</div>
-	);
-};
+import { PromptList } from './PromptList ';
 
 const Feed = () => {
 	const [searchText, setSearchText] = useState('');
