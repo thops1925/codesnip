@@ -28,7 +28,7 @@ const Home = () => {
 			// cancel the request before component unmounts
 			controller.abort();
 		};
-	}, []);
+	}, [postData]);
 
 	return (
 		<section className='flex flex-col items-center justify-center w-full'>
