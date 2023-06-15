@@ -7,18 +7,21 @@ const Feed = () => {
 	const [searchData, setSearchData] = useState([]);
 	const [postData, setData] = useState([]);
 
-	console.log(postData);
+	const getAllData = async () => {
+		const res = await fetch(`/api/prompt`);
+
+		if (res.status === 304) {
+			// Resource not modified, no need to update the data
+			return;
+		}
+
+		const data = await res.json();
+		setData(data.reverse());
+	};
 
 	useEffect(() => {
-		const getAllData = async () => {
-			const res = await fetch(`/api/prompt`);
-			const data = await res.json();
-			setData(data.reverse());
-		};
-		filterSearch(searchText);
 		getAllData();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [searchText]);
+	}, []);
 
 	const handleSearch = (e: any) => {
 		e.preventDefault();
@@ -30,6 +33,11 @@ const Feed = () => {
 		const res: any = postData.filter((item: Post) => regex.test(item.creator.username) || regex.test(item.prompt) || regex.test(item.tag));
 		setSearchData(res);
 	};
+
+	useEffect(() => {
+		filterSearch(searchText);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [searchText]);
 
 	return (
 		<section className='container sm:container lg:container md:container flex justify-center items-center flex-col'>
