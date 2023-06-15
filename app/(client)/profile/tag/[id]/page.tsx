@@ -31,7 +31,9 @@ const TagProfile = ({ params }: any) => {
 			controller.abort();
 		};
 	}, [id]);
+
 	console.log(posts);
+
 	return (
 		<section className='flex justify-center items-center container sm:container lg:container md:container mx-auto'>
 			{posts.map((post: Post) => (
@@ -65,26 +67,12 @@ const TagProfile = ({ params }: any) => {
 									/>
 								</svg>
 							)}
-
-							{/* <FacebookShareButton
-								url={`http://localhost:3000/profile/tag/${post._id}?tag=${post.creator.username}`}
-								title={post.tag}
-								// eslint-disable-next-line react/no-children-prop
-								children={undefined}
-							/>
-
-							<TwitterShareButton
-								url={`http://localhost:3000/profile/tag/${post._id}?tag=${post.creator.username}`}
-								title={post.tag}
-								// eslint-disable-next-line react/no-children-prop
-								children={undefined}
-							/> */}
 						</div>
 					</div>
 					<div className='flex items-center justify-center bg-slate-700 py-4 rounded-lg'>
 						<div className='whitespace-pre-wrap inset-0 break-words text-green-600'>{post.prompt}</div>
 					</div>
-					<div className='my-5 space-x-3'>
+					<div className='mx-4 space-x-4 mt-4'>
 						<FacebookShareButton title={post.tag} url={`https://codesnip-alpha.vercel.app/profile/tag/${post._id}?tag=${post.creator.username}`}>
 							<FacebookIcon size={32} round={true} />
 						</FacebookShareButton>

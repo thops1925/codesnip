@@ -1,5 +1,6 @@
 import Prompt from "@models/prompt";
 import { connectToDB } from "@utils/database";
+import { NextResponse } from "next/server";
 
 export const GET = async (request: any, { params }: any) => {
     try {
@@ -7,7 +8,7 @@ export const GET = async (request: any, { params }: any) => {
 
         const prompts = await Prompt.find({ _id: params.id }).populate('creator')
 
-        return new Response(JSON.stringify(prompts), { status: 200 })
+        return NextResponse.json(prompts, { status: 200 })
     } catch (error) {
         return new Response("Failed to fetch prompts created by user", { status: 500 })
     }

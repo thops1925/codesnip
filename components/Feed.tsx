@@ -1,10 +1,22 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import Prompt from './Prompt';
 import { PromptList } from './PromptList ';
 
-const Feed = ({ postData }: any) => {
+const Feed = () => {
 	const [searchText, setSearchText] = useState('');
 	const [searchData, setSearchData] = useState([]);
+	const [postData, setData] = useState([]);
+
+	const getAllData = async () => {
+		const res = await fetch(`/api/prompt`);
+		const data = await res.json();
+		setData(data.reverse());
+	};
+
+	useEffect(() => {
+		getAllData();
+	}, []);
 
 	const handleSearch = (e: any) => {
 		e.preventDefault();
