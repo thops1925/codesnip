@@ -2,26 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { PromptList } from './PromptList ';
 
-const Feed = () => {
+const Feed = ({ postData }: any) => {
 	const [searchText, setSearchText] = useState('');
 	const [searchData, setSearchData] = useState([]);
-	const [postData, setData] = useState([]);
-
-	const getAllData = async () => {
-		const res = await fetch(`/api/prompt`, { next: { revalidate: 10 } });
-
-		if (res.status === 304) {
-			// Resource not modified, no need to update the data
-			return;
-		}
-
-		const data = await res.json();
-		setData(data.reverse());
-	};
-
-	useEffect(() => {
-		getAllData();
-	}, []);
 
 	const handleSearch = (e: any) => {
 		e.preventDefault();
