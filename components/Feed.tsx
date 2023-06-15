@@ -8,7 +8,7 @@ const Feed = () => {
 	const [postData, setData] = useState([]);
 
 	const getAllData = async () => {
-		const res = await fetch(`/api/prompt`);
+		const res = await fetch(`/api/prompt`, { next: { revalidate: 10 } });
 
 		if (res.status === 304) {
 			// Resource not modified, no need to update the data
