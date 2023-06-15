@@ -22,6 +22,7 @@ const CreatePrompt = () => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
+					'cache-control': 'no-cache', // Add the cache-control header
 				},
 				body: JSON.stringify({
 					userId: session?.user?.id,
@@ -30,7 +31,11 @@ const CreatePrompt = () => {
 				}),
 			});
 			if (response.ok) {
-				router.push('/');
+				if (response.status === 304) {
+					console.log('Resource not modified');
+				} else {
+					router.push('/');
+				}
 			}
 		} catch (error) {
 			console.log(error);
