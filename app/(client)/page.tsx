@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const getAllData = async () => {
-	const res = await fetch(`/api/prompt`, { cache: 'no-cache' });
+	const res = await fetch(`/api/prompt`, { cache: 'no-store' });
 	if (res.status === 304) {
 		// Resource not modified, no need to update the data
 		return;
