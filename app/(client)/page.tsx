@@ -7,28 +7,29 @@ import { useEffect, useState } from 'react';
 
 const getAllData = async () => {
 	const res = await fetch('/api/prompt');
+
 	if (res.status === 304) {
 		// Resource not modified, no need to update the data
-		return;
+		return null;
 	}
+
 	return res.json();
 };
 
 const Home = () => {
-	const [postData, setData] = useState([]);
+	const [postData, setPostData] = useState([]);
 
 	useEffect(() => {
-		const controller = new AbortController();
-		const fetchAll = async () => {
+		const fetchInitialData = async () => {
 			const data = await getAllData();
-			setData(data.reverse());
+
+			if (data) {
+				setPostData(data.reverse());
+			}
 		};
-		fetchAll();
-		return () => {
-			// cancel the request before component unmounts
-			controller.abort();
-		};
-	}, [postData]);
+
+		fetchInitialData();
+	}, []);
 
 	return (
 		<section className='flex flex-col items-center justify-center w-full'>
@@ -40,4 +41,5 @@ const Home = () => {
 		</section>
 	);
 };
+
 export default Home;
