@@ -20,6 +20,7 @@ const CreatePrompt = () => {
 		try {
 			const response = await fetch('/api/prompt/new', {
 				method: 'POST',
+				mode: 'cors',
 				body: JSON.stringify({
 					userId: session?.user?.id,
 					prompt: post.prompt,
