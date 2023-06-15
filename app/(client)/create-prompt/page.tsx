@@ -22,7 +22,6 @@ const CreatePrompt = () => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					'cache-control': 'no-cache', // Add the cache-control header
 				},
 				body: JSON.stringify({
 					userId: session?.user?.id,
