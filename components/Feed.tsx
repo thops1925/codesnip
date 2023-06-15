@@ -7,15 +7,14 @@ const Feed = () => {
 	const [searchData, setSearchData] = useState([]);
 	const [postData, setData] = useState([]);
 
-	const getAllData = async () => {
-		const res = await fetch(`/api/prompt`);
-		const data = await res.json();
-		setData(data.reverse());
-	};
-
 	console.log(postData);
 
 	useEffect(() => {
+		const getAllData = async () => {
+			const res = await fetch(`/api/prompt`);
+			const data = await res.json();
+			setData(data.reverse());
+		};
 		getAllData();
 	}, []);
 
