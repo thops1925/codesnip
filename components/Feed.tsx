@@ -10,13 +10,12 @@ const Feed = () => {
 	console.log(postData);
 
 	useEffect(() => {
-		const getAllData = async () => {
-			const res = await fetch(`/api/prompt`);
-			const data = await res.json();
-			setData(data.reverse());
-		};
+		fetch('/api/prompt')
+			.then((res) => res.json())
+			.then((data) => {
+				setData(data.reverse());
+			});
 		filterSearch(searchText);
-		getAllData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchText]);
 
