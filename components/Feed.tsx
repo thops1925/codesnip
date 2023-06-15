@@ -2,21 +2,35 @@
 import React, { useEffect, useState } from 'react';
 import Prompt from './Prompt';
 import { PromptList } from './PromptList ';
+import { useQuery } from 'react-query';
 
 const Feed = () => {
 	const [searchText, setSearchText] = useState('');
 	const [searchData, setSearchData] = useState([]);
 	const [postData, setData] = useState([]);
 
-	const getAllData = async () => {
-		const res = await fetch(`/api/prompt`);
-		const data = await res.json();
-		setData(data.reverse());
-	};
+	const { isLoading, data: fetchedData } = useQuery('data', async () => {
+		const response = await fetch(`/api/prompt`);
+		return await response.json();
+	});
 
 	useEffect(() => {
-		getAllData();
-	}, []);
+		if (isLoading) {
+			return;
+		}
+
+		setData(fetchedData);
+	}, [isLoading, fetchedData]);
+
+	useEffect(() => {
+		const subscription = fetchedData.subscribe((data: any) => {
+			setData(data);
+		});
+
+		return () => {
+			subscription.unsubscribe();
+		};
+	}, [fetchedData]);
 
 	const handleSearch = (e: any) => {
 		e.preventDefault();
