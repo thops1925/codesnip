@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -42,7 +42,7 @@ const Prompt = ({ post, handleEdit, handleDelete }: Props) => {
 						<Image src={post.creator.image} alt={post._id} width={40} height={40} className='rounded-full object-contain' />
 					</Link>
 					<div className='flex flex-col '>
-						<h3 className='font-satoshi font-semibold text-gray-900 '>{post.creator.username}</h3>
+						<h3 className='font-satoshi font-semibold text-gray-900 '>{post.creator.username.slice(0, 6)}</h3>
 						<p className='text-sm text-gray-400'>{post.creator.email.slice(0, 6)}</p>{' '}
 					</div>
 				</div>

@@ -40,9 +40,9 @@ const TagProfile = ({ params }: any) => {
 						<Link href='/profile'>
 							<Image src={post.creator.image} alt={post._id} width={60} height={60} className='rounded-full object-contain' />
 						</Link>
-						<div className='flex flex-col '>
-							<h3 className='font-semibold text-lg capitalize'>{post.creator.username}</h3>
-							<p className=' text-gray-400 text-lg'>{post.creator.email}</p>{' '}
+						<div className='flex flex-col max-w-xl min-w-md'>
+							<h3 className='font-semibold text-lg capitalize'>{post.creator.username.slice(0, 6)}</h3>
+							<p className=' text-gray-400 text-lg'>{post.creator.email.slice(0, 5)}</p>{' '}
 						</div>
 						<div
 							className=''
