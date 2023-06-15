@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const getAllData = async () => {
-	const res = await fetch(`/api/prompt`, { next: { revalidate: 10 } });
+	const res = await fetch(`/api/prompt`);
 	if (res.status === 304) {
 		// Resource not modified, no need to update the data
 		return;
@@ -23,13 +23,13 @@ const Home = () => {
 			const res = await getAllData();
 			setData(res.reverse());
 		};
-		fetchAll();
+		if (postData) fetchAll();
 
 		return () => {
 			// cancel the request before component unmounts
 			controller.abort();
 		};
-	}, []);
+	}, [postData]);
 
 	return (
 		<section className='flex flex-col items-center justify-center w-full'>
