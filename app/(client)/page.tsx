@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const getAllData = async () => {
-	const res = await fetch(`/api/prompt`, { cache: 'no-store' });
+	const res = await fetch('/api/prompt');
 	if (res.status === 304) {
 		// Resource not modified, no need to update the data
 		return;
@@ -24,7 +24,6 @@ const Home = () => {
 			setData(data.reverse());
 		};
 		fetchAll();
-
 		return () => {
 			// cancel the request before component unmounts
 			controller.abort();
