@@ -1,20 +1,7 @@
-'use client';
 import Feed from '@components/Feed';
 import { desc } from '@lib/desc';
 import logo from '@public/assets/images/thops3.png';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
-
-const getAllData = async () => {
-	const res = await fetch('/api/prompt');
-
-	if (res.status === 304) {
-		// Resource not modified, no need to update the data
-		return null;
-	}
-
-	return res.json();
-};
 
 const Home = () => {
 	return (

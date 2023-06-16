@@ -1,8 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import React, { useEffect, useState } from 'react';
-import Prompt from './Prompt';
 import { PromptList } from './PromptList ';
+
+export const getAllData = async () => {
+	try {
+		const res = await fetch('/api/prompt');
+		return res.json();
+	} catch (error) {
+		console.error('Error fetch', error);
+	}
+};
 
 const Feed = () => {
 	const [searchText, setSearchText] = useState('');
@@ -10,18 +18,12 @@ const Feed = () => {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		getAllData();
+		const fetchData = async () => {
+			const d = await getAllData();
+			setData(d.reverse());
+		};
+		fetchData();
 	}, []);
-
-	const getAllData = async () => {
-		try {
-			const res = await fetch(`/api/prompt`, { cache: 'no-store' });
-			const data = await res.json();
-			setData(data.reverse());
-		} catch (error) {
-			console.error('Error fetch', error);
-		}
-	};
 
 	useEffect(() => {
 		filterSearch(searchText);

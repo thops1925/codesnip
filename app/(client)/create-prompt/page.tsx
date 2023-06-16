@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 import Form from '@components/Form';
+import { getAllData } from '@components/Feed';
 
 const CreatePrompt = () => {
 	const router = useRouter();
@@ -31,6 +32,7 @@ const CreatePrompt = () => {
 				}),
 			});
 			if (response.ok) {
+				getAllData();
 				router.push('/');
 			}
 		} catch (error) {
