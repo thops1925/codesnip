@@ -8,9 +8,9 @@ type body = {
 	tag: string;
 };
 
-export async function POST(req: Request) {
-	const body: body = await req.json();
-	const { userId, prompt, tag } = body;
+
+export const POST = async (request: { json: () => PromiseLike<{ userId: any; prompt: any; tag: any; }> | { userId: any; prompt: any; tag: any; }; }) => {
+	const { userId, prompt, tag } = await request.json();
 	try {
 		await connectToDB();
 		const newPrompt = new Prompt({ creator: userId, prompt, tag });
