@@ -28,7 +28,7 @@ const MobileViewNav = ({ provider, signOut, signIn }: Props) => {
 								my profile
 							</Link>
 							<Link href='/create-prompt' className=' h-12 font-bold capitalize tracking-wide' onClick={() => setDropDown(false)}>
-								create post
+								Create Post
 							</Link>
 							<button
 								type='button'

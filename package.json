@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@types/node": "20.2.5",
@@ -29,6 +30,10 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "prettier": "^2.8.8"
+    "@types/jest": "^29.5.2",
+    "cypress": "^12.14.0",
+    "prettier": "^2.8.8",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1"
   }
 }

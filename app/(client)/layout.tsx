@@ -11,20 +11,6 @@ export const metadata = {
 const RootLayout = ({ children }: any) => {
 	return (
 		<html lang='eng'>
-			{/* <head>
-				<title>Generate icons using AI!</title>
-				<meta name='description' content='Checkout this awesome icon I made!' />
-				<link rel='icon' href='/favicon.ico' />
-				<meta property='og:image' content={``} />
-				<meta property='og:title' content={`Icon Preview for `} />
-				<meta property='og:description' content='Checkout this awesome icon AI generated for me!' />
-				<meta name='twitter:card' content='summary_large_image' />
-				<meta name='twitter:site' content='@thops' />
-				<meta name='twitter:title' content={`Icon Preview for `} />
-				<meta name='twitter:description' content='Checkout this awesome icon AI generated for me!' />
-				<meta name='twitter:image' content={``} />
-				<meta name='twitter:url' content={`https://codesnip-alpha.vercel.app`} />
-			</head> */}
 			<Head>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 			</Head>
