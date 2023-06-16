@@ -10,13 +10,18 @@ const Feed = () => {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		const getAllData = async () => {
-			const res = await fetch(`/api/prompt`);
-			const data = await res.json();
-			setData(data.reverse());
-		};
 		getAllData();
 	}, []);
+
+	const getAllData = async () => {
+		try {
+			const res = await fetch(`/api/prompt`, { cache: 'no-store' });
+			const data = await res.json();
+			setData(data.reverse());
+		} catch (error) {
+			console.error('Error fetch', error);
+		}
+	};
 
 	useEffect(() => {
 		filterSearch(searchText);
