@@ -5,7 +5,7 @@ import { PromptList } from './PromptList ';
 
 export const getAllData = async () => {
 	try {
-		const res = await fetch('/api/prompt');
+		const res = await fetch('/api/prompt', { cache: 'no-store' });
 		return res.json();
 	} catch (error) {
 		console.error('Error fetch', error);
