@@ -3,27 +3,25 @@
 import React, { useEffect, useState } from 'react';
 import { PromptList } from './PromptList ';
 
-export const getAllData = async () => {
-	try {
-		const res = await fetch('/api/prompt', { cache: 'no-store' });
-		return res.json();
-	} catch (error) {
-		console.error('Error fetch', error);
-	}
-};
-
 const Feed = () => {
 	const [searchText, setSearchText] = useState('');
 	const [searchData, setSearchData] = useState([]);
 	const [data, setData] = useState([]);
+	console.log(data);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			const d = await getAllData();
-			setData(d.reverse());
-		};
-		fetchData();
+		getAllData();
 	}, []);
+
+	const getAllData = async () => {
+		try {
+			const res = await fetch(`/api/prompt`);
+			const data = await res.json();
+			setData(data.reverse());
+		} catch (error) {
+			console.error('Error fetch', error);
+		}
+	};
 
 	useEffect(() => {
 		filterSearch(searchText);
