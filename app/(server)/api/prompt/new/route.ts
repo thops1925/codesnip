@@ -1,6 +1,5 @@
 import Prompt from '@models/prompt';
 import { connectToDB } from '@utils/database';
-import { NextResponse } from 'next/server';
 
 type body = {
 	userId: string;
@@ -9,13 +8,13 @@ type body = {
 };
 
 
-export const POST = async (request: { json: () => PromiseLike<{ userId: any; prompt: any; tag: any; }> | { userId: any; prompt: any; tag: any; }; }) => {
+export const POST = async (request: Request) => {
 	const { userId, prompt, tag } = await request.json();
 	try {
 		await connectToDB();
 		const newPrompt = new Prompt({ creator: userId, prompt, tag });
 		await newPrompt.save();
-		return NextResponse.json(newPrompt, { status: 201 });
+		return new Response(JSON.stringify(newPrompt), { status: 201 })
 	} catch (error) {
 		console.log(error);
 	}
