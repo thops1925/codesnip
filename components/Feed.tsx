@@ -5,10 +5,11 @@ import { useQuery } from '@tanstack/react-query';
 import { PromptList } from './PromptList ';
 
 const Feed = () => {
-	const { data, isLoading } = useQuery(['prompt'], () => fetch('/api/prompt').then((res) => res.json()), {
-		refetchInterval: 5000, // Refetch the data every 5 seconds (adjust as needed)
-		staleTime: 10000, // Consider the data stale after 10 seconds (adjust as needed)
-	});
+	const { data, isLoading } = useQuery(['prompt'], () =>
+		fetch('/api/prompt')
+			.then((res) => res.json())
+			.then((data) => data.reverse()),
+	);
 
 	const [searchText, setSearchText] = useState('');
 	const [searchData, setSearchData] = useState([]);

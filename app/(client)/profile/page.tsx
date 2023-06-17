@@ -5,44 +5,34 @@ import { desc } from '@lib/desc';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 const getProfile = async (id: any) => {
-	const res = await fetch(`/api/users/${id}/posts`);
+	const res = await fetch(``);
 	return res.json();
 };
 
 const MyProfile = () => {
 	const { data: session } = useSession();
 	const router = useRouter();
-	const [post, setPost] = useState([]);
+	const id = session?.user.id;
+	const { data: initialData } = useQuery(['prompt'], () => fetch(`/api/users/${id}/posts`).then((res) => res.json()), {});
+	const [post, setPost] = useState(initialData || []);
 
-	useEffect(() => {
-		const controller = new AbortController();
-		const fetchProfile = async () => {
-			const data = await getProfile(session?.user.id);
-			setPost(data.reverse());
-		};
-		if (session?.user.id) fetchProfile();
-
-		return () => {
-			// cancel the request before component unmounts
-			controller.abort();
-		};
-	}, [session?.user.id]);
-
-	const handleEdit = (post: Post) => {
-		router.push(`/update-prompt?id=${post._id}`);
+	const handleEdit = (data: Post) => {
+		router.push(`/update-prompt?id=${data._id}`);
 	};
 
-	const handleDelete = async (del: Post) => {
+	const handleDelete = async (id: Post) => {
 		const hasConfirm = confirm('are you sure?');
+		console.log(id);
 
 		if (hasConfirm) {
 			try {
-				await fetch(`/api/prompt/${del._id.toString()}`, {
+				await fetch(`/api/prompt/${id._id}`, {
 					method: 'DELETE',
 				});
-				const filteredPosts = post.filter((item: Post) => item._id !== del._id);
+				const filteredPosts = post.filter((item: Post) => item._id !== id._id);
 
 				setPost(filteredPosts);
 			} catch (error) {
