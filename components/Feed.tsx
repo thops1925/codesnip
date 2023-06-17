@@ -9,7 +9,6 @@ const Feed = () => {
 
 	const [searchText, setSearchText] = useState('');
 	const [searchData, setSearchData] = useState([]);
-	// const [postData, setData] = useState(data);
 
 	console.log(data);
 
