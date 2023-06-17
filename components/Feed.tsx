@@ -1,17 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import React, { useEffect, useState } from 'react';
-import { PromptList } from './PromptList ';
 import { useQuery } from '@tanstack/react-query';
+import { PromptList } from './PromptList ';
 
 const Feed = () => {
+	const { data, isLoading } = useQuery(['prompt'], () => fetch('/api/prompt').then((res) => res.json()));
+
 	const [searchText, setSearchText] = useState('');
 	const [searchData, setSearchData] = useState([]);
+	// const [postData, setData] = useState(data);
 
-	const { data, isLoading } = useQuery({
-		queryKey: ['prompt'],
-		queryFn: () => fetch('/api/prompt').then((res) => res.json()),
-	});
 	console.log(data);
 
 	useEffect(() => {
@@ -26,9 +25,11 @@ const Feed = () => {
 
 	const filterSearch = (searchText: string) => {
 		const regex = new RegExp(searchText, 'i'); // 'i' flag for case-insensitive search
-		const res: any = data.filter((item: Post) => regex.test(item.creator.username) || regex.test(item.prompt) || regex.test(item.tag));
+		const res = data ? data.filter((item: Post) => regex.test(item.creator.username) || regex.test(item.prompt) || regex.test(item.tag)) : [];
 		setSearchData(res);
 	};
+
+	if (isLoading && !data) return <div>loading</div>;
 
 	return (
 		<section className='container sm:container lg:container md:container flex justify-center items-center flex-col'>
