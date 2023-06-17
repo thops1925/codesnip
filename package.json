@@ -10,6 +10,7 @@
     "cypress": "cypress open"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.29.14",
     "@types/node": "20.2.5",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
@@ -30,8 +31,8 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^4.29.9",
     "@types/jest": "^29.5.2",
-    "cypress": "^12.14.0",
     "prettier": "^2.8.8",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1"

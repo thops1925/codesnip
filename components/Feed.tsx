@@ -2,26 +2,17 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { PromptList } from './PromptList ';
+import { useQuery } from '@tanstack/react-query';
 
 const Feed = () => {
 	const [searchText, setSearchText] = useState('');
 	const [searchData, setSearchData] = useState([]);
-	const [data, setData] = useState([]);
+
+	const { data, isLoading } = useQuery({
+		queryKey: ['prompt'],
+		queryFn: () => fetch('/api/prompt').then((res) => res.json()),
+	});
 	console.log(data);
-
-	useEffect(() => {
-		getAllData();
-	}, []);
-
-	const getAllData = async () => {
-		try {
-			const res = await fetch(`/api/prompt`);
-			const data = await res.json();
-			setData(data.reverse());
-		} catch (error) {
-			console.error('Error fetch', error);
-		}
-	};
 
 	useEffect(() => {
 		filterSearch(searchText);

@@ -10,7 +10,7 @@ export const metadata = {
 
 const RootLayout = ({ children }: any) => {
 	return (
-		<html lang='eng'>
+		<html lang='eng' suppressHydrationWarning={true}>
 			<Head>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 			</Head>
