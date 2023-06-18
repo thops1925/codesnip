@@ -13,13 +13,13 @@ const MyProfile = () => {
 	const id = session?.user.id;
 	const [post, setPost] = useState([]);
 
-	const { data, isLoading } = useQuery(['profile'], async () => {
+	const { data, isLoading } = useQuery(['users'], async () => {
 		const response = await fetch(`/api/users/${id}/posts`);
 		const data = await response.json();
 		setPost(data.reverse());
 	});
 
-	const handleEdit = (data: any) => {
+	const handleEdit = (data: Post) => {
 		router.push(`/update-prompt?id=${data._id}`);
 	};
 
