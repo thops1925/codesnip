@@ -2,39 +2,26 @@
 
 import Profile from '@components/Profile';
 import { desc } from '@lib/desc';
+import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
-const getProfile = async (id: any) => {
-	const res = await fetch(`/api/users/${id}/posts`);
-	return res.json();
-};
 
 const UserProfile = ({ params }: any) => {
 	const searchParams = useSearchParams();
 	const userName = searchParams.get('name');
+	const id = params.id;
 	const [post, setPost] = useState([]);
 
-	useEffect(() => {
-		const controller = new AbortController();
-		const fetchProfile = async () => {
-			const data = await getProfile(params.id);
-			setPost(data.reverse());
-		};
-		if (params?.id) fetchProfile();
+	const { data, isLoading } = useQuery(['user'], () =>
+		fetch(`/api/users/${id}/posts`).then((res) => res.json().then((data) => setPost(data.reverse()))),
+	);
 
-		return () => {
-			// cancel the request before component unmounts
-			controller.abort();
-		};
-	}, [params.id]);
-
-	// if (!session) router.push('/');
+	if (isLoading && !data) return <div>loading</div>;
 
 	return (
-		<div>
+		<>
 			<Profile name={userName} desc={desc} data={post} handleEdit={() => {}} handleDelete={() => {}} />
-		</div>
+		</>
 	);
 };
 

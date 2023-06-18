@@ -5,16 +5,15 @@ import { useQuery } from '@tanstack/react-query';
 import { PromptList } from './PromptList ';
 
 const Feed = () => {
-	const { data, isLoading } = useQuery(['prompt'], () =>
-		fetch('/api/prompt')
-			.then((res) => res.json())
-			.then((data) => data.reverse()),
-	);
-
+	const [post, setPost] = useState([]);
 	const [searchText, setSearchText] = useState('');
 	const [searchData, setSearchData] = useState([]);
 
-	console.log(data);
+	const { data, isLoading } = useQuery(['prompt'], () =>
+		fetch('/api/prompt')
+			.then((res) => res.json())
+			.then((data) => setPost(data.reverse())),
+	);
 
 	useEffect(() => {
 		filterSearch(searchText);
@@ -28,7 +27,7 @@ const Feed = () => {
 
 	const filterSearch = (searchText: string) => {
 		const regex = new RegExp(searchText, 'i'); // 'i' flag for case-insensitive search
-		const res = data ? data.filter((item: Post) => regex.test(item.creator.username) || regex.test(item.prompt) || regex.test(item.tag)) : [];
+		const res = post.filter((item: Post) => regex.test(item.creator.username) || regex.test(item.prompt) || regex.test(item.tag));
 		setSearchData(res);
 	};
 
@@ -46,7 +45,7 @@ const Feed = () => {
 					className='block w-full my-6 rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0'
 				/>
 			</form>
-			{searchText ? <PromptList data={searchData} /> : <PromptList data={data} />}
+			{searchText ? <PromptList data={searchData} /> : <PromptList data={post} />}
 		</section>
 	);
 };

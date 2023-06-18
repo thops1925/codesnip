@@ -16,8 +16,11 @@ const MyProfile = () => {
 	const { data: session } = useSession();
 	const router = useRouter();
 	const id = session?.user.id;
-	const { data: initialData } = useQuery(['prompt'], () => fetch(`/api/users/${id}/posts`).then((res) => res.json()), {});
-	const [post, setPost] = useState(initialData || []);
+	const [post, setPost] = useState([]);
+
+	const { data, isLoading } = useQuery(['profile'], () =>
+		fetch(`/api/users/${id}/posts`).then((res) => res.json().then((data) => setPost(data.reverse()))),
+	);
 
 	const handleEdit = (data: Post) => {
 		router.push(`/update-prompt?id=${data._id}`);
@@ -25,7 +28,6 @@ const MyProfile = () => {
 
 	const handleDelete = async (id: Post) => {
 		const hasConfirm = confirm('are you sure?');
-		console.log(id);
 
 		if (hasConfirm) {
 			try {
@@ -47,6 +49,8 @@ const MyProfile = () => {
 				<p>Please login</p>
 			</div>
 		);
+
+	if (isLoading && !data) return <div>loading</div>;
 
 	return (
 		<div className='flex justify-center items-center flex-col max-w-full'>
