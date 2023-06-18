@@ -1,5 +1,5 @@
 import Prompt from '@models/prompt';
-import { connectToDB } from '@utils/database';
+import { connectToDB } from '@app/utils/database';
 import { NextResponse } from 'next/server';
 
 type body = {

@@ -16,7 +16,7 @@ export const connectToDB = async () => {
 			dbName: 'share',
 		} as ConnectOptions);
 		isConnected = true;
-		console.log('mongo connected');
+		// console.log('mongo connected');
 	} catch (error) {
 		console.log(error);
 	}
