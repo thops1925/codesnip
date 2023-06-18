@@ -12,10 +12,7 @@ const Feed = () => {
 	const { data, isLoading } = useQuery(['prompt'], () =>
 		fetch('/api/prompt')
 			.then((res) => res.json())
-			.then((data) => setPost(data.reverse()), {
-				cacheTime: 60000, // Cache data for 1 minute
-				staleTime: 30000, // Consider data stale after 30 seconds
-			}),
+			.then((data) => setPost(data.reverse())),
 	);
 
 	useEffect(() => {
