@@ -7,7 +7,6 @@ import Form from '@components/Form';
 import { useQueryClient } from '@tanstack/react-query';
 
 const CreatePrompt = () => {
-	const queryClient = useQueryClient();
 	const router = useRouter();
 	const { data: session } = useSession();
 
@@ -28,9 +27,6 @@ const CreatePrompt = () => {
 				}),
 			});
 			if (response.ok) {
-				queryClient.invalidateQueries({ queryKey: ['prompt'] });
-				await queryClient.prefetchQuery({ queryKey: ['prompt'] });
-
 				router.push('/');
 			}
 		} catch (error) {
