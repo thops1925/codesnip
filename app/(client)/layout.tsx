@@ -1,11 +1,15 @@
 import Nav from '@components/Nav';
 import { Provider } from '@components/Provider';
 import '@styles/globals.css';
+import { Metadata } from 'next/dist/lib/metadata/types/metadata-interface';
 import Head from 'next/head';
 
-export const metadata = {
-	title: 'Code Alpha',
-	description: 'Share AI Search',
+export const metadata: Metadata = {
+	title: {
+		default: 'Code Alpha',
+		template: '%s | Next.js App Router',
+	},
+	description: 'Code Snippet Sharing',
 };
 
 const RootLayout = ({ children }: any) => {
