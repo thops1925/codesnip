@@ -1,10 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { PromptList } from './PromptList ';
-import { useQuery } from '@tanstack/react-query';
 
-const Feed = () => {
-	const { data, isLoading } = useQuery(['prompt'], () => fetch(`/api/prompt`).then((res) => res.json()));
+const Feed = ({ data }: any) => {
 	const [post, setPost] = useState([]);
 	const [searchText, setSearchText] = useState('');
 	const [searchData, setSearchData] = useState([]);
@@ -27,10 +25,6 @@ const Feed = () => {
 		const res = post.filter((item: Post) => regex.test(item.creator.username) || regex.test(item.prompt) || regex.test(item.tag));
 		setSearchData(res);
 	};
-
-	if (isLoading) {
-		return <div>Loading...</div>;
-	}
 
 	return (
 		<section className='container sm:container lg:container md:container flex justify-center items-center flex-col'>
