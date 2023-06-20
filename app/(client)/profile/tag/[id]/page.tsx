@@ -1,5 +1,5 @@
 'use client';
-import Feed from '@components/Feed';
+import Feed from '@app/components/Feed';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';

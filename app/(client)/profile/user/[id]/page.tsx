@@ -1,6 +1,6 @@
 'use client';
 
-import Profile from '@components/Profile';
+import Profile from '@app/components/Profile';
 import { desc } from '@lib/desc';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';

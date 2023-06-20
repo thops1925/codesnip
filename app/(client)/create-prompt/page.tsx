@@ -1,4 +1,4 @@
-import FormFeed from '@components/FormFeed';
+import FormFeed from '@app/components/FormFeed';
 
 const createPrompt = () => {
 	return <FormFeed />;

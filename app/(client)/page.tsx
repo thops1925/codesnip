@@ -1,4 +1,4 @@
-import Feed from '@components/Feed';
+import Feed from '@app/components/Feed';
 import { desc } from '@lib/desc';
 import logo from '@public/assets/images/thops3.png';
 import Image from 'next/image';
