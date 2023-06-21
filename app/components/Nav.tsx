@@ -1,10 +1,9 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '../public/assets/images/thops3.png';
+import logo from '@public/assets/images/thops3.png';
 import DesktopNav from './DesktopNav';
 import MobileViewNav from './MobileViewNav';
-
 import { useEffect, useState } from 'react';
 import { getProviders, signIn, signOut, useSession } from 'next-auth/react';
 

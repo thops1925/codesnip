@@ -4,8 +4,7 @@ import Profile from '@app/components/Profile';
 import { desc } from '@lib/desc';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 
 const MyProfile = () => {
 	const { data: session } = useSession();
@@ -13,14 +12,17 @@ const MyProfile = () => {
 	const id = session?.user.id;
 	const [post, setPost] = useState([]);
 
-	const { data, isLoading } = useQuery(['users'], async () => {
-		const response = await fetch(`/api/users/${id}/posts`);
-		const data = await response.json();
-		setPost(data.reverse());
-	});
+	useEffect(() => {
+		const getData = async () => {
+			const response = await fetch(`/api/users/${id}/posts`);
+			const data = await response.json();
+			setPost(data.reverse());
+		};
+		getData();
+	}, [id]);
 
-	const handleEdit = (data: Post) => {
-		router.push(`/update-prompt?id=${data._id}`);
+	const handleEdit = (id: Post) => {
+		router.push(`/update-prompt?id=${id._id}`);
 	};
 
 	const handleDelete = async (id: Post) => {
@@ -28,7 +30,7 @@ const MyProfile = () => {
 
 		if (hasConfirm) {
 			try {
-				await fetch(`/api/prompt/${id}`, {
+				await fetch(`/api/prompt/${id._id}`, {
 					method: 'DELETE',
 				});
 				const filteredPosts = post.filter((item: Post) => item._id !== id._id);
@@ -42,10 +44,6 @@ const MyProfile = () => {
 
 	if (!session) {
 		return <div>Please login</div>;
-	}
-
-	if (isLoading && !data) {
-		return <div>Loading...</div>;
 	}
 
 	return (
